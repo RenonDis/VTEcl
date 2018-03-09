@@ -8,11 +8,13 @@
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
-      body { font-family: 'Droid Serif'; }
+      body { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content {font-size: 30px;}
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
+      ul li { list-style-type: circle; }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
     </style>
   </head>
@@ -22,32 +24,155 @@
 class: center, middle
 
 # Les failles de sécurité WEB
-
+## vtecl.duckdns.org
 ---
 
-# Plan
+# Plan 
 
 1. Introduction
-2. Deep-dive
-3. ...
+
+--
+
+2. Outils de veille
+
+--
+
+3. Étude de cas : Meltdown
+
+--
+
+4. Responsabilité numérique
 
 ---
-
 # Introduction
 
-<ul>
-    <li>One first point</li>
-    <li>ANother point</li>
-    <li>One last point</li>
-</ul>
+- 400 milliards par an : coût global
 
-some deep stuff
+- 74 % des PME françaises touchées
+
+- 242 000€ : coût estimé par attaque sur une PME
+
+- 1/4 des PME se protègent
+
+???
+- 0.5 % du PIB MONDIAL
+
+- argument de l'aiguille dans une botte de foin, FAUX
+
+- plus fréquent : ransomware, cryptolocker, rançongiciel (wannacry)
+
+- manque d'éducation, pas de responsabilité
+
+---
+# Introduction
+
+- Menaces sur la souveraineté (PRISM)
+
+- Menaces sur la santé (WannaCry)
+
+- Menaces sur la vie privée (Skype)
+
+- Menaces sur la scolarité (scolarite.ec-lyon.fr)
+
+???
+- indignation des politiques
+
+- hopitaux britanniques paralysés, dossiers médicaux chiffrés
+
+- pas plus d'indignation, jeu des GAFAM
+
+- scolarité vulnérable, bouts de codes apparents, SSLv2 possible..
+
+> veille sur les failles nouvelles/courantes
+
+---
+class: center, middle
+
+# Outils de veille
+
+---
+class: center, middle
+
+# Feedly
+
+<img height="400px" style="margin-left:-85px" align="middle" src="img/feedlyfeed.png"/>
+
+---
+class: center, middle
+
+# Twitter 
+
+<img height="385px" style="margin-left:-85px" align="middle" src="img/twitterfeed.png"/>
+
+---
+class: center, middle
+
+# Mastodon (@mastodon.technology)
+
+<img height="400px" style="margin-left:0px" align="middle" src="img/mastodonfeed.png"/>
+
+---
+class: center, middle
+
+# Étude de cas : Meltdown
+## meltdownattack.com
+
+---
+# Étude de cas : Meltdown
+
+Faille découverte indépendamment par :
+
+- Cyberus technology
+
+- Université de Technologie de Graz (Autriche)
+
+- Google Project Zero
+
+---
+https://blog.octo.com/quand-votre-cpu-parle-trop-la-faille-meltdown-et-ses-consequences/
+
+---
+background-image: url(img/meltdown1.png)
+
+---
+# Prévention de Meltdown
+
+- Mises à jour !
+
+- Problème matériel
+
+- Faille complexe à mettre en oeuvre
+
+---
+class: middle, center
+
+# Responsabilité numérique
+
+---
+# Responsabilité numérique
+
+- Responsabilité utilisateur : Mettre à jour ses systèmes
+
+- Responsabilité des fabricants : Internet des Objets
+
+- Responsabilité nationale : contrat Open Bar Microsoft pour le ministère de la Défense
+
+???
+contrat reconduit sur 2017-2021
+
+---
+class: middle, center
+
+# Questions
+
+
+
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
     <script>
-      var slideshow = remark.create();
+      var slideshow = remark.create({ countIncrementalSlides: false});
     </script>
   </body>
 </html>
