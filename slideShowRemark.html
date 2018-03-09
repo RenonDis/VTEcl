@@ -16,6 +16,7 @@
       }
       ul li { list-style-type: circle; }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code { font-size: 2em; }
     </style>
   </head>
   <body>
@@ -129,7 +130,26 @@ Faille découverte indépendamment par :
 - Google Project Zero
 
 ---
-https://blog.octo.com/quand-votre-cpu-parle-trop-la-faille-meltdown-et-ses-consequences/
+background-image: url(cpuRam.png)
+
+---
+background-image: url(cpuRam2.png)
+
+---
+background-image: url(cpuRam3.png)
+
+---
+class: middle
+# Exemple de code d'attaque
+
+```
+1  secret = memoire_noyau[adresse_dun_secret] # ERREUR !
+
+2  si secret est_egal_à 1
+3      secret_indirect = memoire_accessible_1
+4  sinon
+5      secret_indirect = memoire_accessible_0
+```
 
 ---
 background-image: url(img/meltdown1.png)
@@ -139,9 +159,12 @@ background-image: url(img/meltdown1.png)
 
 - Mises à jour !
 
-- Problème matériel
+- Problème matériel : n'affecte "que" les processeurs Intel avec l'exécution "out-of-order"
 
 - Faille complexe à mettre en oeuvre
+
+???
+Tous les CPU Intel
 
 ---
 class: middle, center
@@ -151,7 +174,7 @@ class: middle, center
 ---
 # Responsabilité numérique
 
-- Responsabilité utilisateur : Mettre à jour ses systèmes
+- Responsabilité utilisateur : Mettre à jour ses systèmes &amp; remettre en cause ces systèmes
 
 - Responsabilité des fabricants : Internet des Objets
 
