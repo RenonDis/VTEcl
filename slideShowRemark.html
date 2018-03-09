@@ -9,7 +9,7 @@
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
       body { font-family: 'Ubuntu Mono'; }
-      .remark-slide-content {font-size: 30px;}
+      .remark-slide-content {font-size: 25px;}
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
@@ -38,7 +38,7 @@ class: center, middle
 
 --
 
-3. Étude de cas : Meltdown
+3. Étude de cas : Spectre
 
 --
 
@@ -55,6 +55,10 @@ class: center, middle
 
 - 1/4 des PME se protègent
 
+- Top 10 de l'OWASP : injections SQL, failles XSS
+
+> ‘Phishing is a major problem because there really is no patch for human stupidity’
+
 ???
 - 0.5 % du PIB MONDIAL
 
@@ -63,6 +67,8 @@ class: center, middle
 - plus fréquent : ransomware, cryptolocker, rançongiciel (wannacry)
 
 - manque d'éducation, pas de responsabilité
+
+Mike Danseglio - Program Manager At Microsoft
 
 ---
 # Introduction
@@ -84,7 +90,7 @@ class: center, middle
 
 - scolarité vulnérable, bouts de codes apparents, SSLv2 possible..
 
-> veille sur les failles nouvelles/courantes
+ veille sur les failles nouvelles/courantes
 
 ---
 class: center, middle
@@ -115,11 +121,11 @@ class: center, middle
 ---
 class: center, middle
 
-# Étude de cas : Meltdown
+# Étude de cas : Spectre
 ## meltdownattack.com
 
 ---
-# Étude de cas : Meltdown
+# Étude de cas : Spectre
 
 Faille découverte indépendamment par :
 
@@ -136,30 +142,59 @@ background-image: url(cpuRam.png)
 background-image: url(cpuRam2.png)
 
 ---
-background-image: url(cpuRam3.png)
+class: middle
+# Exemple de code d'attaque
+
+```C
+void victim_function(x) {
+   if (x < array_spy_size) { // branchement qui "entraîne" le CPU
+     temp = array_spy[x];
+   }
+}
+
+for(int i = 0 ; i < 50 ; i++){
+   victim_function(1); //1 est un index toujours valide
+   empty_cache() ; // on vide volontairement le cache.
+}
+```
 
 ---
 class: middle
 # Exemple de code d'attaque
 
+```C
+// mise en cache de la donnée compromise 
+victim_function(malicious_address); 
 ```
-1  secret = memoire_noyau[adresse_dun_secret] # ERREUR !
 
-2  si secret est_egal_à 1
-3      secret_indirect = memoire_accessible_1
-4  sinon
-5      secret_indirect = memoire_accessible_0
-```
+- Donnée en cache : *cache-timing attack*
 
 ---
-background-image: url(img/meltdown1.png)
+class: middle
+# Exemple de code d'attaque
+
+```C
+for(int i = 0 ; i < 256 ;i++){
+   uint8_t time1 = get_processor_clock_time();
+   (void *) array2[i]; 
+   uint8_t time2 = get_processor_clock_time();
+
+   if(time2 – time1 < CACHE_HIT_THRESHOLD){
+     return i; 
+   }
+}
+```
 
 ---
 # Prévention de Meltdown
 
 - Mises à jour !
 
-- Problème matériel : n'affecte "que" les processeurs Intel avec l'exécution "out-of-order"
+- Problème matériel 
+
+  - Meltdown : n'affecte "que" les processeurs Intel avec l'exécution "out-of-order"
+
+  - Spectre : potentiellement tout les processeurs (Intel, AMD, ARM..)
 
 - Faille complexe à mettre en oeuvre
 
@@ -172,6 +207,8 @@ class: middle, center
 # Responsabilité numérique
 
 ---
+class: middle
+
 # Responsabilité numérique
 
 - Responsabilité utilisateur : Mettre à jour ses systèmes &amp; remettre en cause ces systèmes
